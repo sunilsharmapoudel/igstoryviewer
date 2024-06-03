@@ -1,0 +1,37 @@
+{
+  "name": "igstoryviewer",
+  "version": "1.0.0",
+  "description": "It is an anonymous Instagram story viewer application which let you view story of a person by pugging their username.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sunilsharmapoudel/igstoryviewer.git"
+  },
+  "keywords": [
+    "igstoryviewer",
+    "insgagram",
+    "story",
+    "viewer",
+    "anonymous",
+    "instagram",
+    "story",
+    "viewer"
+  ],
+  "author": "Sunil Sharma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sunilsharmapoudel/igstoryviewer/issues"
+  },
+  "homepage": "https://github.com/sunilsharmapoudel/igstoryviewer#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "favicons": "^7.2.0",
+    "path": "^0.12.7"
+  }
+}

@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Changa:wght@200..800&family=Pacifico&display=swap');
+
+:root {
+    /*===== Colors =====*/
+    --skin-color: #878fa8;
+    --primary-color: #1e3371;
+    --title-color: #111d41;
+    --text-color: #5fdd72;
+    --scroll-bar-color:#30235d;;
+
+    /* --FONT --*/
+    --barnd-font: 'Pacifico', sans-serif;
+    --title-font: 'Changa', sans-serif;
+
+
+    /*  .5rem=8px, 1rem= 16px, 1.5rem= 24px --- */
+    --biggest-font-size: 3rem;
+    --h1-font-size: 2.23rem;
+    --h2-font-size: 1.5rem;
+    --h3-font-size: 1.25rem;
+    --normal-font-size: 1rem;
+    --small-font-size: .875rem;
+    --smaller-font-size: .813rem;
+
+    /*-- FONT WEIGHT  --*/
+    --font-medium: 500;
+    --font-bold: 600;
+
+    /*-- Margines bottom */
+    --mb-0-25: .25rem;
+    --mb-0-5: .5rem;
+    --mb-0-75: .75rem;
+    --mb-1: 1rem;
+    --mb-1-5: 1.5rem;
+    --mb-2: 2rem;
+    --mb-2-5: 2.5rem;
+    --mb-3: 3rem;
+
+
+    /*-- Z-Index --*/
+    --z-fixed: 10;
+    --z-modal: 100;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: var(--primary-color);
+}
+
+.navbar {
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin:0 20px 0 20px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+}
+
+.brand-title {
+    font-family: var(--barnd-font);
+    color: white;
+    font-size: var(--h2-font-size);
+}
+
+.brand-logo{
+    height: 50px;
+    width: 50px;
+}
+
+.nav-ul {
+    display: flex;
+    list-style: none;
+    text-decoration: none;
+}
+
+.nav-link {
+    font-size: var(--h2-font-size);
+    padding: var(--mb-0-5);
+    margin-right: var(--mb-1);
+    font-family: var(--title-font);
+    font-weight: var(--font-bold);
+}
+
+.nav-link:hover {
+    text-decoration: underline wavy orange;
+    text-underline-offset: 5px;
+}
+
+.nav-link > a {
+    color: white;
+    text-decoration: none;
+}
+
+.translate-btn {
+    padding: var(--mb-0-25);
+    border-radius: 5px;
+    font-family: var(--title-font);
+    font-weight: var(--font-medium);
+}
+
+.mob-nav {
+    display: none;
+}
+
+
+body {
+    background-color: blueviolet;
+}
+
+@media screen and (max-width: 768px) {
+    .desk-nav {
+        display: none;
+    }
+    .mob-nav {
+        display: flex;
+        flex-direction: column;
+    }
+}
