@@ -7,7 +7,7 @@
     --primary-color: #1e3371;
     --title-color: #111d41;
     --text-color: #5fdd72;
-    --scroll-bar-color:#30235d;;
+    --scroll-bar-color:#30235d;
 
     /* --FONT --*/
     --barnd-font: 'Pacifico', sans-serif;
@@ -58,7 +58,6 @@ header {
 }
 
 .desk-nav {
-    background-color: wheat;
     display: flex;  
     justify-content: space-between;
     align-items: center;
@@ -70,6 +69,23 @@ header {
     height: 130px;
     flex-direction: column;
     justify-content: center;
+}
+
+.tab-nav {
+    display: none;
+    
+}
+
+.group1 {
+    display: flex;
+    justify-content: space-between;
+    margin:0 20px 0 20px;
+    align-items: center;
+}
+
+.group2 {
+    display: flex;
+    justify-content: space-around;
 }
 
 .brand {
@@ -117,9 +133,8 @@ header {
     border-radius: 5px;
     font-family: var(--title-font);
     font-weight: var(--font-medium);
+    font-size: var(--smaller-font-size);
 }
-
-
 
 
 body {
@@ -128,6 +143,32 @@ body {
 
 @media screen and (max-width: 768px) {
     .desk-nav {
+        display: none;
+    }
+    .mob-nav {
+        display: none;
+        background-color: #5fdd72;
+    }
+    .tab-nav {
+        display: block;
+    }
+    .translate-btn {
+        padding: 2px;
+        border-radius: 5px;
+        font-family: var(--title-font);
+        font-weight: var(--font-medium);
+        font-size: 10px;
+    }
+    .nav-link {
+        font-size: var(--h3-font-size);
+    }
+}
+
+@media screen and (max-width: 425) {
+    .desk-nav {
+        display: none;
+    }
+    .tab-nav {
         display: none;
     }
     .mob-nav {
