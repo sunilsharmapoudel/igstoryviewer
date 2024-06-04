@@ -57,12 +57,19 @@ header {
     background-color: var(--primary-color);
 }
 
-.navbar {
-    height: 70px;
-    display: flex;
+.desk-nav {
+    background-color: wheat;
+    display: flex;  
     justify-content: space-between;
     align-items: center;
     margin:0 20px 0 20px;
+}
+
+.mob-nav {
+    display: none;
+    height: 130px;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .brand {
@@ -112,9 +119,7 @@ header {
     font-weight: var(--font-medium);
 }
 
-.mob-nav {
-    display: none;
-}
+
 
 
 body {
@@ -127,6 +132,5 @@ body {
     }
     .mob-nav {
         display: flex;
-        flex-direction: column;
     }
 }
