@@ -1,6 +1,21 @@
 <%-include('partials/header');-%>
-<div class="container-wrapper">
-    <p>I am from body</p>
+<div class="container">
+    <div class="hero">
+        <img class="hero-image" src="/images/watch-instagram-story.webp" alt="Instagram Story Viewer">
+        <div class="hero-container">
+            <div class="title">IG Story Viewer</div>
+        <div class="title-desc"><p>WATCH <span><img class="insta-logo" src="/images/instagram-logo.webp" alt="Instagram Logo"></span> STORIES ANANYMOUSLY</p></div>
+        <div class="username-form">
+            <form action="/" method="post">
+                <input type="text" name="username" placeholder="Enter username"/>
+                <button type="submit">View Stories</button>
+            </form>
+        </div>
+        </div>
+    </div>
+    <div class="results">
+        
+    </div>
 </div>
 
 <%-include('partials/footer');-%>

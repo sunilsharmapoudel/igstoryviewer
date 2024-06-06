@@ -1,6 +1,7 @@
 {
   "name": "igstoryviewer",
   "version": "1.0.0",
+  "type": "commonjs",
   "description": "It is an anonymous Instagram story viewer application which let you view story of a person by pugging their username.",
   "main": "app.js",
   "scripts": {
@@ -32,6 +33,8 @@
     "ejs": "^3.1.10",
     "express": "^4.19.2",
     "favicons": "^7.2.0",
-    "path": "^0.12.7"
+    "node-fetch": "^3.3.2",
+    "path": "^0.12.7",
+    "request": "^2.88.2"
   }
 }

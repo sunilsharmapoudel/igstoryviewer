@@ -3,7 +3,8 @@ const bodyParser = require("body-parser");
 const dotenv = require('dotenv');
 const port = process.env.PORT || 3000;
 const path = require("path");
-const favicon = require("favicons")
+const favicon = require("favicons");
+const request = require('request');
 
 const app = express();
 
@@ -12,12 +13,14 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "view"));
 app.use(express.static('public'));
 
-app.get("/", (req, res) => {
+app.get("/", async( req, res) => {
     const username = req.query.username;
+    console.log(username);
+
     res.render("index", {
-        name : username,
+        // name : username,
     })
-})
+});
 
 app.post("/", (req, res) => {
     const username = req.body.username;

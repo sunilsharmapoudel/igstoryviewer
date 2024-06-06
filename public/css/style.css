@@ -15,7 +15,9 @@
 
 
     /*  .5rem=8px, 1rem= 16px, 1.5rem= 24px --- */
-    --biggest-font-size: 3rem;
+    --biggest-font-size: 4rem;
+    --mid-biggest-font-size: 3.5rem;
+    --bigger-font-size: 3rem;
     --h1-font-size: 2.23rem;
     --h2-font-size: 1.5rem;
     --h3-font-size: 1.25rem;
@@ -64,28 +66,30 @@ header {
     margin:0 20px 0 20px;
 }
 
-.mob-nav {
-    display: none;
-    height: 130px;
-    flex-direction: column;
-    justify-content: center;
-}
-
 .tab-nav {
     display: none;
-    
 }
 
 .group1 {
     display: flex;
     justify-content: space-between;
     margin:0 20px 0 20px;
+    padding: 5px 0 5px 0;
     align-items: center;
 }
 
 .group2 {
+    height: 50px;
+    width: 100%;
     display: flex;
     justify-content: space-around;
+    align-items: center;
+    background: linear-gradient(45deg, 
+                #f09433 0%, 
+                #e6683c 25%, 
+                #dc2743 50%, 
+                #cc2366 75%, 
+                #bc1888 100%);
 }
 
 .brand {
@@ -136,18 +140,148 @@ header {
     font-size: var(--smaller-font-size);
 }
 
+.hero {
+    position: relative;
+    text-align: center;
+}
+.hero-container {
+    position: absolute;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+}
+
+.hero-image {
+    width: 100%;
+    height: auto;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.title {
+    margin-bottom: var(--mb-2);
+    font-size: var(--bigger-font-size);
+    font-family: var(--barnd-font);
+    text-align: center;
+    color: white;   
+}
+
+.title-desc {
+    font-size: var(--biggest-font-size);
+    font-family: var(--title-font);
+    text-align: center;
+    color: white;
+    font-weight: var(--font-bold);
+    line-height: 4rem;
+}
+
+.username-form {
+    text-align: center;
+    margin-top: var(--mb-2);
+    margin-bottom: var(--mb-2);
+}
+
+input {
+    height: var(--mb-2-5);
+    padding: var(--mb-0-5);
+    width: 20rem;
+    border-radius: var(--mb-0-5);
+    border: var(--primary-color) .15rem solid;
+    background-color: pink;
+    margin-right: var(--mb-1);
+    font-size: var(--mb-1);
+    font-family: var(--title-font);
+    font-weight: var(--font-medium);
+}
+
+form > button {
+    color: var(--primary-color);
+    cursor: pointer;
+    color: white;
+    border: var(--primary-color) .15rem solid;
+    font-size: var(--mb-0-1);
+    padding: var(--mb-0-25);
+    font-family: var(--title-font);
+    border-radius: var(--mb-0-5);
+    font-weight: var(--font-medium);
+    background:linear-gradient(45deg, 
+      #f09433 0%, 
+      #e6683c 25%, 
+      #dc2743 50%, 
+      #cc2366 75%, 
+      #bc1888 100%);
+}
 
 body {
     background-color: blueviolet;
 }
 
+@media screen and (max-width: 1150px) {
+    
+.title {
+    margin-bottom: var(--mb-1-5);
+    font-size: var(--bigger-font-size);
+}
+
+.title-desc {
+    font-size: var(--mid-biggest-font-size);
+    font-family: var(--title-font);
+    font-weight: var(--font-bold);
+    line-height: 3.5rem;
+}
+
+.insta-logo {
+    height: 45px;
+    width: 45px;
+}
+
+.username-form {
+    margin-top: var(--mb-1-5);
+    margin-bottom: var(--mb-1-5);
+}
+
+input {
+    height: var(--mb-2-5);
+    padding: var(--mb-0-5);
+    width: 17rem;
+}
+}
+
+@media screen and (max-width: 950px) {
+    
+    .title {
+        margin-bottom: var(--mb-0-5);
+        font-size: var(--h1-font-size);
+    }
+    
+    .title-desc {
+        font-size: var(--bigger-font-size);
+        font-family: var(--title-font);
+        font-weight: var(--font-bold);
+        line-height: 3.5rem;
+    }
+    
+    .insta-logo {
+        height: 40px;
+        width: 40px;
+    }
+    
+    .username-form {
+        margin-top: var(--mb-0-25);
+      s  margin-bottom: var(--mb-0-25);
+    }
+    
+    input {
+        width: 15rem;
+    }
+    }
+
+
 @media screen and (max-width: 768px) {
     .desk-nav {
         display: none;
-    }
-    .mob-nav {
-        display: none;
-        background-color: #5fdd72;
     }
     .tab-nav {
         display: block;
@@ -160,18 +294,142 @@ body {
         font-size: 10px;
     }
     .nav-link {
-        font-size: var(--h3-font-size);
+        font-size: var(--h2-font-size);
+    }
+    .nav-link:hover {
+        text-decoration: underline wavy white;
+    }
+    
+    .title {
+        margin-bottom: var(--mb-0-5);
+        font-size: var(--h2-font-size);
+    }
+    
+    .title-desc {
+        font-size: var(--h1-font-size);
+        font-family: var(--title-font);
+        font-weight: var(--font-bold);
+        line-height: 2.5rem;
+    }
+    
+    .insta-logo {
+        height: 27px;
+        width: 27px;
+    }
+    
+    .username-form {
+        margin-top: var(--mb-0-25);
+        margin-bottom: var(--mb-0-25);
+    }
+    
+    input {
+        width: 10rem;
+        height: var(--mb-2);
+        margin-right: var(--mb-0-25);
+    }
+    
+    form > button {
+        padding: var(--mb-0-2);
+        font-size: var(--mb-0-75);
+        width: 5rem;
+
     }
 }
 
-@media screen and (max-width: 425) {
+@media screen and (max-width: 565px) {
     .desk-nav {
         display: none;
     }
     .tab-nav {
-        display: none;
+        display: block;
     }
-    .mob-nav {
-        display: flex;
+    .translate-btn {
+        padding: 2px;
+        border-radius: 5px;
+        font-family: var(--title-font);
+        font-weight: var(--font-medium);
+        font-size: 10px;
+    }
+    .nav-link {
+        font-size: var(--h2-font-size);
+    }
+    .nav-link:hover {
+        text-decoration: underline wavy white;
+    }
+    
+    .title {
+        margin-bottom: var(--mb-0-5);
+        font-size: var(--h3-font-size);
+    }
+    
+    .title-desc {
+        font-size: var(--h2-font-size);
+        font-family: var(--title-font);
+        font-weight: var(--font-bold);
+        line-height: 1.5rem;
+    }
+    
+    .insta-logo {
+        height: 20px;
+        width: 20px;
+    }
+    
+    .username-form {
+        margin-top: var(--mb-0-25);
+        margin-bottom: var(--mb-0-25);
+    }
+    
+    input {
+        width: 7rem;
+        height: var(--mb-2);
+        margin-right: var(--mb-0-25);
+        font-size: var(--mb-0-75);
+    }
+    
+    form > button {
+        padding: var(--mb-0-2);
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .group1 {
+        margin:0 10px 0 10px;
+        padding: 8px 0 8px 0;
+    }
+    .nav-link {
+        font-size: var(--h3-font-size);
+    }
+
+    .title {
+        margin-bottom: 0.3rem;
+        font-size: var(--normal-font-size);
+    }
+    
+    .title-desc {
+        font-size: var(--h3-font-size);
+        font-family: var(--title-font);
+        font-weight: var(--font-bold);
+        line-height: 1.2rem;
+    }
+    
+    .insta-logo {
+        height: 15px;
+        width: 15px;
+    }
+    
+    .username-form {
+        margin-top: var(--mb-0-25);
+        margin-bottom: var(--mb-0-25);
+    }
+    
+    input {
+        width: 6rem;
+        height: 1.8rem;
+        margin-right: .2rem;
+        font-size: var(--mb-0-75);
+    }
+
+    form > button {
+        padding: var(--mb-0-2);
     }
 }
