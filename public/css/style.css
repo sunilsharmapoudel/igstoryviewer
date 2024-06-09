@@ -6,7 +6,7 @@
     --skin-color: #878fa8;
     --primary-color: #1e3371;
     --title-color: #111d41;
-    --text-color: #5fdd72;
+    --text-color: #e6683c;
     --scroll-bar-color:#30235d;
 
     /* --FONT --*/
@@ -214,12 +214,72 @@ form > button {
       #bc1888 100%);
 }
 
+.results {
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 1.5rem;
+    width: 85%;
+    background-color: var(--skin-color);
+    border: #e6683c solid .2rem;
+    border-radius: .5rem;
+}
+
+.user {
+    background-color: var(--primary-color);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.user-bio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2.5rem 0 2.5rem 0;
+}
+
+.user-details {
+    border-left: solid red 2px;
+    border-radius: .5rem;
+    padding-left: 25px;
+}
+
+.profile-pic {
+    height: 150px;
+    width: 150px;
+    border: #5fdd72 solid 2px;
+    border-radius: 50%;
+}
+.username-info {
+    font-family: var(--title-font);
+    font-size: var(--normal-font-size);
+    font-weight: var(--font-bold);
+    color: var(--skin-color);
+}
+
+.info-title {
+    font-family: var(--title-font);
+    font-size: var(--h2-font-size);
+    font-weight: var(--font-bold);
+    color: white;
+    /* padding-left: 15px; */
+}
+
+.info-data {
+    align-content: center;
+    font-family: var(--title-font);
+    font-size: var(--h2-font-size);
+    font-weight: var(--font-bold);
+    color: var(--text-color);
+}
+
 body {
     background-color: blueviolet;
 }
 
 @media screen and (max-width: 1150px) {
-    
 .title {
     margin-bottom: var(--mb-1-5);
     font-size: var(--bigger-font-size);
@@ -250,7 +310,6 @@ input {
 }
 
 @media screen and (max-width: 950px) {
-    
     .title {
         margin-bottom: var(--mb-0-5);
         font-size: var(--h1-font-size);
