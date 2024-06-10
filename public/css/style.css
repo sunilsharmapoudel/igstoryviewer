@@ -215,6 +215,7 @@ form > button {
 }
 
 .results {
+    display: block;
     margin-right: auto;
     margin-left: auto;
     margin-top: 1.5rem;

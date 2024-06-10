@@ -13,7 +13,9 @@
         </div>
         </div>
     </div>
-    <div id="results" class="results">
+    
+
+    <div class="results">
         <div class="user">
             <div class="user-bio">
                 <img src="<%=avatar%>" alt="alt" class="profile-pic">
@@ -34,6 +36,15 @@
 
 
 </div>
-
+<% if (username == null) { %>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var resultsElements = document.getElementsByClassName("results");
+            for (var i = 0; i < resultsElements.length; i++) {
+                resultsElements[i].style.display = "none";
+            }
+        });
+    </script>
+<% } %>
 <%-include('partials/footer');-%>
    
