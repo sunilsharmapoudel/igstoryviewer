@@ -13,18 +13,17 @@
         </div>
         </div>
     </div>
-    <div class="results">
+    <div id="results" class="results">
         <div class="user">
             <div class="user-bio">
-                <img src="/images/insta-pic.jpeg" alt="alt" class="profile-pic">
-                <span class="username-info">Supriya Khatiwada</span>
-
-                <p class="info-title">Supriya Khatiwada</p>
+                <img src="<%=avatar%>" alt="alt" class="profile-pic">
+                <span class="username-info"><%=username%></span>
+                <p class="info-title"><%=fullname%></p>
             </div>
             <div class="user-details">
-                <h3 class="info-title">Following : <span class="info-data">12</span></h3>
-                <h3 class="info-title">Following : <span class="info-data">12</span></h3>
-                <h3 class="info-title">Followers : <span class="info-data">15.6K</span></h3>
+                <h3 class="info-title">Followers : <span class="info-data"><%=followerscount%></span></h3>
+                <h3 class="info-title">Following : <span class="info-data"><%=followingcount%></span></h3>
+                <h3 class="info-title">Category : <span class="info-data"><%=category%></span></h3>
             </div>
         </div>
         <div class="content">
@@ -32,6 +31,8 @@
         </div>
         
     </div>
+
+
 </div>
 
 <%-include('partials/footer');-%>

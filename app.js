@@ -17,11 +17,13 @@ app.set("views", path.join(__dirname, "view"));
 app.use(express.static('public'));
 
 app.get("/", async( req, res) => {
-    const username = req.query.username;
-
     res.render("index", {
-      name : "",
+      username :null,
+      fullname :"",
+      followerscount :"",
+      followingcount :"",
       avatar : "",
+      category: "",
   })
 });
 
@@ -53,18 +55,23 @@ app.post("/", async(req, res) => {
     
     try {
         const infoResponse = await axios.request(infoOptions);
-        console.log(infoResponse.data)
-        // console.log(infoResponse.data.category)
-        console.log(infoResponse.data.follower_count)
-        // console.log(infoResponse.data.following_count)
-        // console.log(infoResponse.data.full_name)
-        // console.log(infoResponse.data.username)
-
+        const infoData = infoResponse.data.data;
+        const userName = infoData.username;
+        const fullName = infoData.full_name;
+        const followersCount = infoData.follower_count;
+        const followingCount = infoData.following_count;
+        const profilePic = encodeURIComponent(infoData.profile_pic_url_hd);
+        console.log(profilePic);
+        const userCategory = infoData.category;
         const storiesResponse = await axios.request(storiesOptions);
         // const profilPic = encodeURIComponent(userInfo.profile_pic_url);
         res.render("index", {
-          name :"fullName",
-          avatar : "https://phosphor.utils.elfsightcdn.com/?url=${profilPic}",
+          username :userName,
+          fullname :fullName,
+          followerscount :followersCount,
+          followingcount :followingCount,
+          avatar : `https://phosphor.utils.elfsightcdn.com/?url=${profilePic}`,
+          category: userCategory,
       })
 
     } catch (error) {

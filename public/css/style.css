@@ -126,7 +126,7 @@ header {
     text-decoration: underline wavy orange;
     text-underline-offset: 5px;
 }
-
+          
 .nav-link > a {
     color: white;
     text-decoration: none;
@@ -242,8 +242,9 @@ form > button {
 
 .user-details {
     border-left: solid red 2px;
-    border-radius: .5rem;
-    padding-left: 25px;
+    border-right: solid red 2px;
+    padding: 1rem;
+    border-radius: 1rem;
 }
 
 .profile-pic {
