@@ -13,7 +13,6 @@
         </div>
         </div>
     </div>
-    
 
     <div class="results">
         <div class="user">
@@ -29,11 +28,22 @@
             </div>
         </div>
         <div class="content">
-            content goes here
+            <div class="stories-wrapper">
+            <% if (typeof stories !== 'undefined' && stories.length > 0) { %>
+                <% stories.forEach(function(n) { %>
+                    
+                        <div class="stories-container">
+                            <video controls="true" class="story" src="<%= n.video_url %>"></video>
+                            <button type="button" class="download-btn" data-src="<%= n.video_url %>">Download</button>
+                        </div>
+                    
+                <% }); %>
+            <% } else { %>
+                <p>No stories available</p>
+            <% } %>
         </div>
-        
+        </div>
     </div>
-
 
 </div>
 <% if (username == null) { %>
@@ -44,7 +54,30 @@
                 resultsElements[i].style.display = "none";
             }
         });
+
+
     </script>
 <% } %>
+<script>
+    // Function to open video in a new tab
+    function openVideoInNewTab(url) {
+        const a = document.createElement('a');
+        a.href = url;
+        a.target = '_blank';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const downloadButtons = document.querySelectorAll('.download-btn');
+        downloadButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const videoUrl = button.getAttribute('data-src');
+                openVideoInNewTab(videoUrl);
+            });
+        });
+    });
+</script>
 <%-include('partials/footer');-%>
    

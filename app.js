@@ -24,6 +24,7 @@ app.get("/", async( req, res) => {
       followingcount :"",
       avatar : "",
       category: "",
+      stories: "",
   })
 });
 
@@ -57,14 +58,16 @@ app.post("/", async(req, res) => {
         const infoResponse = await axios.request(infoOptions);
         const infoData = infoResponse.data.data;
         const userName = infoData.username;
-        const fullName = infoData.full_name;
+        const fullName = infoData.full_name.toUpperCase();
         const followersCount = infoData.follower_count;
         const followingCount = infoData.following_count;
         const profilePic = encodeURIComponent(infoData.profile_pic_url_hd);
-        console.log(profilePic);
         const userCategory = infoData.category;
+
         const storiesResponse = await axios.request(storiesOptions);
-        // const profilPic = encodeURIComponent(userInfo.profile_pic_url);
+        const storiesCount = storiesResponse.data.data.count;
+        const stories = storiesResponse.data.data.items;
+
         res.render("index", {
           username :userName,
           fullname :fullName,
@@ -72,10 +75,11 @@ app.post("/", async(req, res) => {
           followingcount :followingCount,
           avatar : `https://phosphor.utils.elfsightcdn.com/?url=${profilePic}`,
           category: userCategory,
+          stories: stories,
       })
 
     } catch (error) {
-        console.error(error);
+        console.error(error.response.data.detail);
     }
 })
 
