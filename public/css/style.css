@@ -39,20 +39,31 @@
   --mb-2-5: 2.5rem;
   --mb-3: 3rem;
 
-  /*-- Z-Index --*/
-  --z-fixed: 10;
-  --z-modal: 100;
-}
 
 html {
   scroll-behavior: smooth;
 }
+
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
+
+/* -- Scroll Bar --*/
+
+::-webkit-scrollbar {
+  width: .60rem;
+  background-color: var(--scroll-bar-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--text-color);
+  border-radius: .5rem;
+}
+
 
 header {
   background-color: var(--primary-color);
@@ -385,6 +396,7 @@ form > button {
 
 .footer-wrapper {
   position: relative;
+  padding: 3rem 0 3rem 0;
   width: 100%;
   background-color: var(--primary-color);
   bottom: 0px;
@@ -418,7 +430,8 @@ form > button {
   background-color:white;
   box-shadow: 0 20px 20px 0 rgba(9, 13, 72, 0.37);
   border-radius: var(--mb-1);
-  padding: 4rem;
+  padding: 3rem;
+  margin-bottom: 4rem;
 }
 
 .accordion__title {
@@ -464,6 +477,7 @@ form > button {
 }
 
 .accordion__answer {
+  font-family: var(--title-font);
   padding: 2rem 0;
 }
 
@@ -476,6 +490,7 @@ form > button {
 body {
   background-color: blueviolet;
 }
+
 
 @media screen and (max-width: 1150px) {
   .title {

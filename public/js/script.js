@@ -30,9 +30,13 @@ document.addEventListener("DOMContentLoaded", () => {
       accordions.forEach((a, i) => {
         const c = a.querySelector(".accordion__content");
         const ic = a.querySelector("#accordion-icon");
-
-        c.style.height = i === index && !isOpen ? `${c.scrollHeight}px` : "0px";
-        ic.classList.toggle("plus", i !== index || !isOpen);
+        if (i === index) {
+          c.style.height = !isOpen ? `${c.scrollHeight}px` : "0px";
+          ic.textContent = !isOpen ? "−" : "+";
+        } else {
+          c.style.height = "0px";
+          ic.textContent = "+";
+        }
       });
     });
   });
