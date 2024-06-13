@@ -6,7 +6,6 @@ const port = process.env.PORT || 3000;
 const path = require("path");
 const favicon = require("favicons");
 const axios = require('axios');
-const cors_proxy = require('cors-anywhere');
 
 
 const app = express();
@@ -28,6 +27,17 @@ app.get("/", async( req, res) => {
       bio:"",
   })
 });
+
+app.get("/privacy-policy", (req, res)=> {
+  console.log("privacy")
+  res.render("privacypolicy");
+})
+
+app.get("/contact-us", (req, res)=> {
+  console.log("contact")
+
+  res.render("contact");
+})
 
 app.post("/", async(req, res) => {
     const username = req.body.username;
@@ -65,8 +75,8 @@ app.post("/", async(req, res) => {
         const followingCount = infoData.following_count;
         const profilePic = encodeURIComponent(infoData.profile_pic_url_hd);
         const userCategory = infoData.category;
-
         const storiesResponse = await axios.request(storiesOptions);
+        console.log(storiesResponse); 
         const storiesCount = storiesResponse.data.data.count;
         const stories = storiesResponse.data.data.items;
 
