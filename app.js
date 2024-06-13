@@ -25,6 +25,7 @@ app.get("/", async( req, res) => {
       avatar : "",
       category: "",
       stories: "",
+      bio:"",
   })
 });
 
@@ -57,6 +58,7 @@ app.post("/", async(req, res) => {
     try {
         const infoResponse = await axios.request(infoOptions);
         const infoData = infoResponse.data.data;
+        const bio = infoData.biography;
         const userName = infoData.username;
         const fullName = infoData.full_name.toUpperCase();
         const followersCount = infoData.follower_count;
@@ -70,9 +72,10 @@ app.post("/", async(req, res) => {
 
         res.render("index", {
           username :userName,
-          fullname :fullName,
+          fullname :fullName, 
           followerscount :followersCount,
           followingcount :followingCount,
+          bio:bio,
           avatar : `https://phosphor.utils.elfsightcdn.com/?url=${profilePic}`,
           category: userCategory,
           stories: stories,
