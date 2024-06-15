@@ -25,6 +25,8 @@ app.get("/", async( req, res) => {
       category: "",
       stories: "",
       bio:"",
+      errormessage : "",
+      isprivate: "",
   })
 });
 
@@ -41,6 +43,7 @@ app.get("/contact-us", (req, res)=> {
 
 app.post("/", async(req, res) => {
     const username = req.body.username;
+    let isprivate;
     const storiesOptions = { 
       method: 'GET',
       url: 'https://instagram-scraper-api2.p.rapidapi.com/v1/stories',
@@ -68,6 +71,7 @@ app.post("/", async(req, res) => {
     try {
         const infoResponse = await axios.request(infoOptions);
         const infoData = infoResponse.data.data;
+        console.log(infoData);
         const bio = infoData.biography;
         const userName = infoData.username;
         const fullName = infoData.full_name.toUpperCase();
@@ -75,12 +79,14 @@ app.post("/", async(req, res) => {
         const followingCount = infoData.following_count;
         const profilePic = encodeURIComponent(infoData.profile_pic_url_hd);
         const userCategory = infoData.category;
+        let isPrivate = infoData.is_private;
         const storiesResponse = await axios.request(storiesOptions);
-        console.log(storiesResponse); 
         const storiesCount = storiesResponse.data.data.count;
         const stories = storiesResponse.data.data.items;
-
+        if(isPrivate == true)isprivate = "Yes"
+        else isprivate = "No"
         res.render("index", {
+          isprivate: isprivate,
           username :userName,
           fullname :fullName, 
           followerscount :followersCount,
@@ -89,13 +95,31 @@ app.post("/", async(req, res) => {
           avatar : `https://phosphor.utils.elfsightcdn.com/?url=${profilePic}`,
           category: userCategory,
           stories: stories,
+          errormessage : "",
       })
 
     } catch (error) {
-        console.error(error.response.data.detail);
-    }
-})
+      let errorMessage = error.response.data.detail;
+      if(errorMessage == "Invalid 'username_or_id_or_url'") errorMessage = "🧐 Please check again, Username or ID or URL is invalid."
+      if(errorMessage == "Not found") errorMessage = `🧐 Please check again, ${username} account doesn't exist. `
 
+      console.log(errorMessage)
+        res.render("index", {
+          isprivate: isprivate,
+          errormessage : `${errorMessage}`,
+          username:false,
+          username :null,
+          fullname :null, 
+          followerscount :null,
+          followingcount :null,
+          bio:null,
+          avatar : null,
+          category: null,
+          stories: null,
+      })
+    }
+
+})
 
 app.listen(port, (req, res) => {
     console.log(`Server is running on port ${port}`);

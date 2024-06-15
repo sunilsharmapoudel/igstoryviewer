@@ -38,18 +38,19 @@
   --mb-2: 2rem;
   --mb-2-5: 2.5rem;
   --mb-3: 3rem;
-
+}
 
 html {
   scroll-behavior: smooth;
 }
 
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  text-decoration: none;
 }
+
 
 
 /* -- Scroll Bar --*/
@@ -63,7 +64,6 @@ html {
   background-color: var(--text-color);
   border-radius: .5rem;
 }
-
 
 header {
   background-color: var(--primary-color);
@@ -106,7 +106,7 @@ header {
 
 .brand {
   display: flex;
-  align-items: center;
+  align-items: center; 
 }
 
 .brand-title {
@@ -152,10 +152,16 @@ header {
   font-size: var(--smaller-font-size);
 }
 
+.page-container {
+  margin: 2rem auto 2rem auto;
+  width: 80%;
+}
+
 .hero {
   position: relative;
   text-align: center;
 }
+
 .hero-container {
   position: absolute;
   top: 50%;
@@ -229,7 +235,7 @@ form > button {
 }
 
 .results {
-  display: block;
+  display: none;
   margin-right: auto;
   margin-left: auto;
   margin-top: 1.5rem;
@@ -314,6 +320,7 @@ form > button {
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
+  padding-bottom: 1rem;
 }
 
 .stories-container {
@@ -342,6 +349,10 @@ form > button {
   width: 70%;
   margin-right: auto;
   margin-left: auto;
+}
+.services-list {
+  list-style:circle;
+  padding-left: 2rem;
 }
 
 .body-title-desc {
@@ -416,6 +427,21 @@ form > button {
   padding-top: var(--mb-1);
 }
 
+.body-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 4rem 0 1rem 0;
+}
+.body-brand > img{
+  height: 5rem;
+  width: 5rem;
+}
+
+.body-brand > h2{
+  font-size: var(--h1-font-size);
+}
+
 .section-title {
   margin-bottom: var(--mb-1-5);
   color: white;
@@ -424,6 +450,18 @@ form > button {
   font-family: var(--title-font);
   text-decoration: underline #e6683c;
   text-underline-offset: var(--mb-0-5);
+}
+
+.error-container {
+  display: block;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: var(--primary-color);
+  margin: 1.5rem auto 1.5rem auto;
+  width: 85%;
+  border: #e6683c solid 0.2rem;
+  border-radius: 0.5rem;
+  padding: 2rem;
 }
 
 .accordion__wrapper {
@@ -479,6 +517,7 @@ form > button {
 .accordion__answer {
   font-family: var(--title-font);
   padding: 2rem 0;
+  color: var(--title-color);
 }
 
 .accordion__content {
@@ -489,6 +528,8 @@ form > button {
 
 body {
   background-color: blueviolet;
+  font-family: var(--title-font);
+  color: white;
 }
 
 
@@ -667,6 +708,14 @@ body {
   form > button {
     padding: var(--mb-0-2);
   }
+
+  .body-brand > img {
+    height: 4rem;
+    width: 4rem;
+}
+.body-brand > h2 {
+  font-size: var(--h2-font-size);
+}
 }
 
 @media screen and (max-width: 425px) {

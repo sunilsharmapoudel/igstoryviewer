@@ -7,17 +7,15 @@ function openVideoInNewTab(url) {
     document.body.removeChild(a);
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    const downloadButtons = document.querySelectorAll('.download-btn');
+document.addEventListener("DOMContentLoaded", () => {
+  const downloadButtons = document.querySelectorAll('.download-btn');
     downloadButtons.forEach(button => {
         button.addEventListener('click', function () {
             const videoUrl = button.getAttribute('data-src');
             openVideoInNewTab(videoUrl);
         });
     });
-});
 
-document.addEventListener("DOMContentLoaded", () => {
   const accordions = document.querySelectorAll(".accordion");
   accordions.forEach((accordion, index) => {
     const header = accordion.querySelector(".accordion__header");
@@ -39,5 +37,23 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     });
+  });
+
+  const form = document.querySelector('form');
+  const input = document.querySelector('input');
+  console.log(form, input)
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    if (input.value.trim() === '') {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Empty Field',
+        text: 'Enter username or userid or url',
+        confirmButtonText: 'Okay'
+      });
+    } else {
+      form.submit();
+    }
   });
 });

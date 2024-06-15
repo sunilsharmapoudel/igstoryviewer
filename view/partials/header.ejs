@@ -4,23 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
     <title>IG Story Viewer</title>
-    <meta name="description" content="It is an anonymous Instagram story viewer application which let you view story of a person by pugging their username." />
+    <meta name="description" content="IG Story Viewer is an anonymous Instagram story viewer application which let you view story of a person by pugging their username or id or url." />
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="/css/style.css">
     <script src="/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <header>
         <div class="desk-nav">
             <div class="brand">
-                <img class="brand-logo" src="/images/ig-story-viewer.webp" alt="IG Story Viewer"/>
-                <p class="brand-title">IG Story Viewer</p>
+                <a href="/"><img class="brand-logo" src="/images/ig-story-viewer.webp" alt="IG Story Viewer"/></a>
+                <a href="/"><p class="brand-title">IG Story Viewer</p></a>
             </div>
             <div class="menu">
                 <ul class="nav-ul">
-                    <li class="nav-link"><a href="#">View Story</a></li>
-                    <li class="nav-link"><a href="#">About</a></li>
-                    <li class="nav-link"><a href="#">Contact</a></li>
+                    <li class="nav-link"><a href="#stories">View Story</a></li>
+                    <li class="nav-link"><a href="#about">About</a></li>
+                    <li class="nav-link"><a href="/contact-us">Contact</a></li>
                 </ul>
             </div>
             <div class="translate">
@@ -41,8 +42,8 @@
             <div class="group2">
                 <div class="menu">
                     <ul class="nav-ul">
-                        <li class="nav-link"><a href="#stories">View Story</a></li>
-                        <li class="nav-link"><a href="#about">About</a></li>
+                        <li class="nav-link"><a href="http://localhost:3000/#story">View Story</a></li>
+                        <li class="nav-link"><a href="http://localhost:3000/#about">About</a></li>
                         <li class="nav-link"><a href="/contact">Contact</a></li>
                     </ul>
                 </div>

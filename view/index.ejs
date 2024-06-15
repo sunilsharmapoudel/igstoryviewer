@@ -22,12 +22,28 @@
       </div>
       <div class="username-form">
         <form action="/" method="post">
-          <input type="text" name="username" placeholder="Enter username" id="stories"/>
+          <input
+            type="text"
+            name="username"
+            placeholder="Enter username"
+            id="stories"
+            required
+          />
           <button type="submit">View Stories</button>
         </form>
       </div>
     </div>
   </div>
+
+  <% if (username) { %>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var resultsElements = document.getElementsByClassName("results");
+      for (var i = 0; i < resultsElements.length; i++) {
+        resultsElements[i].style.display = "block";
+      }
+    });
+  </script>
 
   <div class="results">
     <div class="user">
@@ -46,9 +62,12 @@
         <h3 class="info-title">
           Category : <span class="info-data"><%=category%></span>
         </h3>
+        <h3 class="info-title">
+          Private : <span class="info-data"><%=isprivate%></span>
+        </h3>
       </div>
       <div class="bio">
-        <div id="about" class="info-title">About Me 👻</div>
+        <div class="info-title"><p>About Me 👻</p></div>
         <span><%=bio%></span>
       </div>
     </div>
@@ -67,24 +86,25 @@
           </button>
         </div>
         <% }); %> <% } else { %>
-        <p>No stories available</p>
+          <%  if(isprivate) { %>
+            <p class="info-title">Account is Private</p>
+            <%  }else { %>
+            <p  class="info-title">No stories available</p>
+            <% } %>
         <% } %>
       </div>
     </div>
   </div>
-  <% if (username == null) { %>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      var resultsElements = document.getElementsByClassName("results");
-      for (var i = 0; i < resultsElements.length; i++) {
-        resultsElements[i].style.display = "none";
-      }
-    });
-  </script>
+  <% }else { %>
+    <%if(errormessage) { %>
+      <div class="error-container">
+        <p class="info-title"><%=errormessage%></p>
+      </div>
+    <%}%>
   <% } %>
 
   <div class="aboutsite-container">
-    <div class="footer-brand">
+    <div class="body-brand">
       <img
         class="brand-logo"
         src="/images/ig-story-viewer.webp"
@@ -95,7 +115,7 @@
     <div class="body-title-desc">
       <p>WATCH INSTAGRAM STORIES WITHOUT LETTING THEM KNOW</p>
     </div>
-    <div class="about-us">
+    <div id="about" class="about-us">
       <h2 class="section-title">About us</h2>
       <div class="site-desc">
         <p>
@@ -103,8 +123,16 @@
           story viewer ensures privacy, while our Instagram story download
           feature lets you save moments effortlessly. Check out profiles with
           our Instagram profile viewer and enjoy Instagram story viewers free of
-          charge!"
+          charge!
         </p>
+        <h2><strong>Services we provide</strong></h2>
+        <ul class="services-list">
+          <li>IG Story Viewer</li>
+          <li>Anonymous IG Story Viewer</li>
+          <li>Instagram Story Download</li>
+          <li>Instagram Profile Viewer</li>
+          <li>Instagram Story Viewers Free</li>
+        </ul>
       </div>
     </div>
 
@@ -187,98 +215,112 @@
     </div>
 
     <div class="faq">
-        <div class="accordion__wrapper">
-          <h1 class="accordion__title">Frequently Asked Questions</h1>
-          <div class="accordion">
-            <div class="accordion__header">
-              <h2 class="accordion__question">
-                What is IG Story Viewer?
-              </h2>
-              <span class="accordion__icon">
-                <span class="plus" id="accordion-icon">+</span>
+      <div class="accordion__wrapper">
+        <h1 class="accordion__title">Frequently Asked Questions</h1>
+        <div class="accordion">
+          <div class="accordion__header">
+            <h2 class="accordion__question">What is IG Story Viewer?</h2>
+            <span class="accordion__icon">
+              <span class="plus" id="accordion-icon">+</span>
             </span>
-            </div>
-            <div class="accordion__content">
-              <p class="accordion__answer">
-                <strong>IG Story Viewer</strong> is a user-friendly tool that allows you to view Instagram stories effortlessly. With our platform, you can watch stories anonymously, download them, and explore profiles without hassle.
-              </p>
-            </div>
           </div>
-          <div class="accordion">
-            <div class="accordion__header">
-              <h2 class="accordion__question">How does the anonymous IG story viewer work? </h2>
-              <span class="accordion__icon">
-                <span class="plus" id="accordion-icon">+</span>
-            </span>
-            </div>
-            <div class="accordion__content">
-              <p class="accordion__answer">
-                Our <strong>anonymous IG story viewer</strong> lets you watch Instagram stories without revealing your identity. Simply enter the username of the account whose stories you want to view, and you can watch them discreetly.
-              </p>
-            </div>
+          <div class="accordion__content">
+            <p class="accordion__answer">
+              <strong>IG Story Viewer</strong> is a user-friendly tool that
+              allows you to view Instagram stories effortlessly. With our
+              platform, you can watch stories anonymously, download them, and
+              explore profiles without hassle.
+            </p>
           </div>
-          <div class="accordion">
-            <div class="accordion__header">
-              <h2 class="accordion__question">
-                Can I download Instagram stories using IG Story Viewer?
-              </h2>
-              <span class="accordion__icon">
-                <span class="plus" id="accordion-icon">+</span>
+        </div>
+        <div class="accordion">
+          <div class="accordion__header">
+            <h2 class="accordion__question">
+              How does the anonymous IG story viewer work?
+            </h2>
+            <span class="accordion__icon">
+              <span class="plus" id="accordion-icon">+</span>
             </span>
-            </div>
-            <div class="accordion__content">
-              <p class="accordion__answer">
-                Yes, you can! Our platform offers a seamless <strong>Instagram story download</strong> feature. Just find the story you want to save, click the download button, and it will be saved to your device instantly.
-              </p>
-            </div>
           </div>
-          <div class="accordion">
-            <div class="accordion__header">
-              <h2 class="accordion__question">How do I use the Instagram profile viewer?</h2>
-              <span class="accordion__icon">
-                <span class="plus" id="accordion-icon">+</span>
-            </span>
-            </div>
-            <div class="accordion__content">
-              <p class="accordion__answer">
-                Using the <strong>Instagram profile viewer</strong> is simple. Enter the username of the profile you wish to explore, and you can browse their content without needing to follow them.
-              </p>
-            </div>
+          <div class="accordion__content">
+            <p class="accordion__answer">
+              Our <strong>anonymous IG story viewer</strong> lets you watch
+              Instagram stories without revealing your identity. Simply enter
+              the username of the account whose stories you want to view, and
+              you can watch them discreetly.
+            </p>
           </div>
-          <div class="accordion">
-            <div class="accordion__header">
-              <h2 class="accordion__question">
-                Are these features free to use?
-              </h2>
-              <span class="accordion__icon">
-                <span class="plus" id="accordion-icon">+</span>
+        </div>
+        <div class="accordion">
+          <div class="accordion__header">
+            <h2 class="accordion__question">
+              Can I download Instagram stories using IG Story Viewer?
+            </h2>
+            <span class="accordion__icon">
+              <span class="plus" id="accordion-icon">+</span>
             </span>
-            </div>
-            <div class="accordion__content">
-              <p class="accordion__answer">
-                Absolutely! All our features, including the IG story viewer, anonymous IG story viewer, Instagram story download, and Instagram profile viewer, are completely free. Enjoy <strong>Instagram story viewers free</strong> with IG Story Viewer!
-              </p>
-            </div>
           </div>
-          <div class="accordion">
-            <div class="accordion__header">
-              <h2 class="accordion__question">
-                Is IG Story Viewer easy to use?
-              </h2>
-              <span class="accordion__icon">
-                <span class="plus" id="accordion-icon">+</span>
+          <div class="accordion__content">
+            <p class="accordion__answer">
+              Yes, you can! Our platform offers a seamless
+              <strong>Instagram story download</strong> feature. Just find the
+              story you want to save, click the download button, and it will be
+              saved to your device instantly.
+            </p>
+          </div>
+        </div>
+        <div class="accordion">
+          <div class="accordion__header">
+            <h2 class="accordion__question">
+              How do I use the Instagram profile viewer?
+            </h2>
+            <span class="accordion__icon">
+              <span class="plus" id="accordion-icon">+</span>
             </span>
-            </div>
-            <div class="accordion__content">
-              <p class="accordion__answer">
-                Yes, IG Story Viewer is designed to be intuitive and user-friendly. Whether you are viewing stories, downloading them, or exploring profiles, our platform ensures a smooth and easy experience.
-              </p>
-            </div>
+          </div>
+          <div class="accordion__content">
+            <p class="accordion__answer">
+              Using the <strong>Instagram profile viewer</strong> is simple.
+              Enter the username of the profile you wish to explore, and you can
+              browse their content without needing to follow them.
+            </p>
+          </div>
+        </div>
+        <div class="accordion">
+          <div class="accordion__header">
+            <h2 class="accordion__question">Are these features free to use?</h2>
+            <span class="accordion__icon">
+              <span class="plus" id="accordion-icon">+</span>
+            </span>
+          </div>
+          <div class="accordion__content">
+            <p class="accordion__answer">
+              Absolutely! All our features, including the IG story viewer,
+              anonymous IG story viewer, Instagram story download, and Instagram
+              profile viewer, are completely free. Enjoy
+              <strong>Instagram story viewers free</strong> with IG Story
+              Viewer!
+            </p>
+          </div>
+        </div>
+        <div class="accordion">
+          <div class="accordion__header">
+            <h2 class="accordion__question">Is IG Story Viewer easy to use?</h2>
+            <span class="accordion__icon">
+              <span class="plus" id="accordion-icon">+</span>
+            </span>
+          </div>
+          <div class="accordion__content">
+            <p class="accordion__answer">
+              Yes, IG Story Viewer is designed to be intuitive and
+              user-friendly. Whether you are viewing stories, downloading them,
+              or exploring profiles, our platform ensures a smooth and easy
+              experience.
+            </p>
           </div>
         </div>
       </div>
-
+    </div>
   </div>
 </div>
-
 <%-include('partials/footer');-%>
