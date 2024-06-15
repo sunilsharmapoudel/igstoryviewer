@@ -8,6 +8,7 @@ function openVideoInNewTab(url) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+
   const downloadButtons = document.querySelectorAll('.download-btn');
     downloadButtons.forEach(button => {
         button.addEventListener('click', function () {

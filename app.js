@@ -31,13 +31,10 @@ app.get("/", async( req, res) => {
 });
 
 app.get("/privacy-policy", (req, res)=> {
-  console.log("privacy")
   res.render("privacypolicy");
 })
 
 app.get("/contact-us", (req, res)=> {
-  console.log("contact")
-
   res.render("contact");
 })
 

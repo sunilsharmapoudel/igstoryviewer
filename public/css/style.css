@@ -51,10 +51,6 @@ html {
   text-decoration: none;
 }
 
-
-
-/* -- Scroll Bar --*/
-
 ::-webkit-scrollbar {
   width: .60rem;
   background-color: var(--scroll-bar-color);
@@ -143,13 +139,13 @@ header {
   color: white;
   text-decoration: none;
 }
+ 
+.skiptranslate {
+  display: none;
+}
 
-.translate-btn {
-  padding: var(--mb-0-25);
-  border-radius: 5px;
-  font-family: var(--title-font);
-  font-weight: var(--font-medium);
-  font-size: var(--smaller-font-size);
+.body {
+  position: relative;
 }
 
 .page-container {
@@ -366,6 +362,8 @@ form > button {
   font-weight: var(--font-bold);
   line-height: 2.2rem;
 }
+
+
 
 .site-desc {
   margin-bottom: var(--mb-1-5);
@@ -598,13 +596,7 @@ body {
   .tab-nav {
     display: block;
   }
-  .translate-btn {
-    padding: 2px;
-    border-radius: 5px;
-    font-family: var(--title-font);
-    font-weight: var(--font-medium);
-    font-size: 10px;
-  }
+  
   .nav-link {
     font-size: var(--h2-font-size);
   }
@@ -662,13 +654,7 @@ body {
   .tab-nav {
     display: block;
   }
-  .translate-btn {
-    padding: 2px;
-    border-radius: 5px;
-    font-family: var(--title-font);
-    font-weight: var(--font-medium);
-    font-size: 10px;
-  }
+  
   .nav-link {
     font-size: var(--h2-font-size);
   }
