@@ -152,6 +152,7 @@ header {
 .page-container {
   margin: 2rem auto 2rem auto;
   width: 80%;
+  font-size: var(--h3-font-size);
 }
 
 .hero {
