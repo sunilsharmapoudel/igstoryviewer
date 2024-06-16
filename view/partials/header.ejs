@@ -1,89 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, height=device-height, initial-scale=1.0"
+    />
     <title>IG Story Viewer</title>
-    <meta name="description" content="IG Story Viewer is an anonymous Instagram story viewer application which let you view story of a person by pugging their username or id or url." />
-    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="/css/style.css">
+    <meta
+      name="description"
+      content="IG Story Viewer is an anonymous Instagram story viewer application which let you view story of a person by pugging their username or id or url."
+    />
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/css/style.css" />
     <script src="/js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "WebSite",
-          "name": "IG Story Viewer",
-          "url": "https://www.igstoryviewer.pro",
-          "description": "IG Story Viewer is an anonymous Instagram story viewer application which lets you view the story of a person by plugging their username or id or url.",
-          "logo": "https://www.igstoryviewer.pro/images/ig-story-viewer.webp",
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "5",
-            "bestRating": "5",
-            "ratingCount": "100"
-          },
-          "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://www.igstoryviewer.pro/?s={search_term_string}",
-            "query-input": "required name=search_term_string"
-          },
-          "service": {
-            "@type": "Service",
-            "serviceType": [
-              "IG Story Viewer",
-              "Anonymous IG Story Viewer",
-              "Instagram Story Download",
-              "Instagram Profile Viewer",
-              "Instagram Story Viewers Free"
-            ],
-            "provider": {
-              "@type": "Organization",
-              "name": "IG Story Viewer",
-              "url": "https://www.igstoryviewer.pro"
-            }
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "IG Story Viewer",
+        "url": "https://www.igstoryviewer.pro",
+        "description": "IG Story Viewer is an anonymous Instagram story viewer application which lets you view the story of a person by plugging their username or id or url.",
+        "logo": "https://www.igstoryviewer.pro/images/ig-story-viewer.webp",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5",
+          "bestRating": "5",
+          "ratingCount": "100"
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://www.igstoryviewer.pro/?s={search_term_string}",
+          "query-input": "required name=search_term_string"
+        },
+        "service": {
+          "@type": "Service",
+          "serviceType": [
+            "IG Story Viewer",
+            "Anonymous IG Story Viewer",
+            "Instagram Story Download",
+            "Instagram Profile Viewer",
+            "Instagram Story Viewers Free"
+          ],
+          "provider": {
+            "@type": "Organization",
+            "name": "IG Story Viewer",
+            "url": "https://www.igstoryviewer.pro"
           }
         }
-        </script>
-</head>
-<body>
+      }
+    </script>
+  </head>
+  <body>
     <header>
-        <div class="desk-nav">
-            <div class="brand">
-                <a href="/"><img class="brand-logo" src="/images/ig-story-viewer.webp" alt="IG Story Viewer"/></a>
-                <a href="/"><p class="brand-title">IG Story Viewer</p></a>
-            </div>
-            <div class="menu">
-                <ul class="nav-ul">
-                    <li class="nav-link"><a href="#stories">View Story</a></li>
-                    <li class="nav-link"><a href="#about">About</a></li>
-                    <li class="nav-link"><a href="/contact-us">Contact</a></li>
-                </ul>
-            </div>
-            <!-- <div class="translate">
-                <div id="google_translate_element"></div>
-            </div> -->
+      <div class="desk-nav">
+        <div class="brand">
+          <a href="/"
+            ><img
+              class="brand-logo"
+              src="/images/ig-story-viewer.webp"
+              alt="IG Story Viewer"
+          /></a>
+          <a href="/"><p class="brand-title">IG Story Viewer</p></a>
         </div>
+        <div class="menu">
+          <ul class="nav-ul">
+            <li class="nav-link"><a href="#stories">View Story</a></li>
+            <li class="nav-link"><a href="#about">About</a></li>
+            <li class="nav-link"><a href="/contact-us">Contact</a></li>
+          </ul>
+        </div>
+        <!-- <div class="translate">
+                <div id="google_translate_element"></div>
+        </div> -->
+      </div>
 
-        <div class="tab-nav">
-            <div class="group1">
-                <div class="brand">
-                    <img class="brand-logo" src="/images/ig-story-viewer.webp" alt="IG Story Viewer"/>
-                    <p class="brand-title">IG Story Viewer</p>
-                </div>
-                <!-- <div class="translate">
+      <div class="tab-nav">
+        <div class="group1">
+          <div class="brand">
+            <img
+              class="brand-logo"
+              src="/images/ig-story-viewer.webp"
+              alt="IG Story Viewer"
+            />
+            <p class="brand-title">IG Story Viewer</p>
+          </div>
+          <!-- <div class="translate">
                     <div id="google_translate_element_mobile"></div>
                 </div> -->
-            </div>
-            <div class="group2">
-                <div class="menu">
-                    <ul class="nav-ul">
-                        <li class="nav-link"><a href="http://localhost:3000/#story">View Story</a></li>
-                        <li class="nav-link"><a href="http://localhost:3000/#about">About</a></li>
-                        <li class="nav-link"><a href="/contact">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-            
         </div>
+        <div class="group2">
+          <div class="menu">
+            <ul class="nav-ul">
+              <li class="nav-link">
+                <a href="http://localhost:3000/#story">View Story</a>
+              </li>
+              <li class="nav-link">
+                <a href="http://localhost:3000/#about">About</a>
+              </li>
+              <li class="nav-link"><a href="/contact">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </header>
+
