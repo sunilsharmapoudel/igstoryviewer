@@ -42,7 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const form = document.querySelector('form');
   const input = document.querySelector('input');
-  console.log(form, input)
   form.addEventListener('submit', function(event) {
     event.preventDefault();
 
