@@ -3,7 +3,7 @@ require('dotenv').config();
 const favicon = require('serve-favicon');
 const bodyParser = require("body-parser");
 const dotenv = require('dotenv');
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 const path = require("path");
 const axios = require('axios');
 

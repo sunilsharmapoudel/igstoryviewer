@@ -27,7 +27,7 @@
   /*-- FONT WEIGHT  --*/
   --font-medium: 500;
   --font-bold: 600;
-  --font-extra-bold:900;
+  --font-extra-bold: 900;
 
   /*-- Margines bottom */
   --mb-0-25: 0.25rem;
@@ -52,13 +52,13 @@ html {
 }
 
 ::-webkit-scrollbar {
-  width: .60rem;
+  width: 0.6rem;
   background-color: var(--scroll-bar-color);
 }
 
 ::-webkit-scrollbar-thumb {
   background-color: var(--text-color);
-  border-radius: .5rem;
+  border-radius: 0.5rem;
 }
 
 header {
@@ -102,7 +102,7 @@ header {
 
 .brand {
   display: flex;
-  align-items: center; 
+  align-items: center;
 }
 
 .brand-title {
@@ -139,7 +139,7 @@ header {
   color: white;
   text-decoration: none;
 }
- 
+
 .skiptranslate {
   display: none;
 }
@@ -349,7 +349,7 @@ form > button {
   margin-left: auto;
 }
 .services-list {
-  list-style:circle;
+  list-style: circle;
   padding-left: 2rem;
 }
 
@@ -394,7 +394,7 @@ form > button {
 }
 
 .link::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 100%;
   height: 2px;
@@ -455,12 +455,12 @@ form > button {
   justify-content: center;
   margin: 4rem 0 1rem 0;
 }
-.body-brand > img{
+.body-brand > img {
   height: 5rem;
   width: 5rem;
 }
 
-.body-brand > h2{
+.body-brand > h2 {
   font-size: var(--h1-font-size);
 }
 
@@ -486,7 +486,7 @@ form > button {
   padding: 2rem;
 }
 
-.steps{
+.steps {
   background-color: var(--skin-color);
   padding: var(--mb-2-5);
   border-radius: var(--mb-1);
@@ -499,7 +499,7 @@ form > button {
 }
 
 .accordion__wrapper {
-  background-color:white;
+  background-color: white;
   box-shadow: 0 20px 20px 0 rgba(9, 13, 72, 0.37);
   border-radius: var(--mb-1);
   padding: 3rem;
@@ -515,7 +515,7 @@ form > button {
 }
 
 .accordion {
-  border-bottom: 0.1rem solid var(--primary-color) ;
+  border-bottom: 0.1rem solid var(--primary-color);
   padding-bottom: var(--mb-1-5);
   margin-bottom: var(--mb-2);
 }
@@ -565,7 +565,6 @@ body {
   font-family: var(--title-font);
   color: white;
 }
-
 
 @media screen and (max-width: 1150px) {
   .title {
@@ -626,18 +625,23 @@ body {
 }
 
 @media screen and (max-width: 768px) {
+  .aboutsite-container {
+    width: 90%;
+  }
+  .page-container {
+    width: 95%;
+}
   .desk-nav {
     display: none;
   }
   .tab-nav {
     display: block;
   }
-
   .brand {
     margin-left: auto;
     margin-right: auto;
   }
-  
+
   .nav-link {
     font-size: var(--h2-font-size);
   }
@@ -695,7 +699,7 @@ body {
   .tab-nav {
     display: block;
   }
-  
+
   .nav-link {
     font-size: var(--h3-font-size);
   }
@@ -739,10 +743,10 @@ body {
   .body-brand > img {
     height: 4rem;
     width: 4rem;
-}
-.body-brand > h2 {
-  font-size: var(--h2-font-size);
-}
+  }
+  .body-brand > h2 {
+    font-size: var(--h2-font-size);
+  }
 }
 
 @media screen and (max-width: 425px) {
