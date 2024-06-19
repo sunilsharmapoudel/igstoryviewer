@@ -73,23 +73,39 @@
     </div>
     <div class="content">
       <div class="stories-wrapper">
-        <% if (typeof stories !== 'undefined' && stories.length > 0) { %> <%
-        stories.forEach(function(n) { %>
-        <div class="stories-container">
-          <video controls="true" class="story" src="<%= n.video_url %>"></video>
-          <button
-            type="button"
-            class="download-btn"
-            data-src="<%= n.video_url %>"
-          >
-            Download
-          </button>
-        </div>
-        <% }); %> <% } else { %> <% if(isprivate) { %>
-        <p class="info-title">Account is Private</p>
-        <% }else { %>
-        <p class="info-title">No stories available</p>
-        <% } %> <% } %>
+        <% if (typeof stories !== 'undefined' && stories.length > 0) { %>
+          <% stories.forEach(function(n) { %>
+            <% if(n.media_type == 1) { %>
+              <div class="stories-container">
+                <img class="story" src="https://phosphor.utils.elfsightcdn.com/?url=<%= encodeURIComponent(n.thumbnail_url) %>" alt="photo story"/>
+                <button
+                  type="button"
+                  class="download-btn"
+                  data-src="<%= n.thumbnail_url %>"
+                >
+                  Download
+                </button>
+              </div>
+            <% } else { %>
+              <div class="stories-container">
+                <video controls="true" class="story" src="<%= n.video_url %>"></video>
+                <button
+                  type="button"
+                  class="download-btn"
+                  data-src="<%= n.video_url %>"
+                >
+                  Download
+                </button>
+              </div>
+            <% } %>
+          <% }); %>
+        <% } else { %>
+          <% if(isprivate == "Yes") { %>
+            <p class="error-title">Account is Private</p>
+          <% } else { %>
+            <p class="error-title">No stories uploaded in past 24 hours.</p>
+          <% } %>
+        <% } %>
       </div>
     </div>
   </div>

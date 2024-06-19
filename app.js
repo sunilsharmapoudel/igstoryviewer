@@ -69,7 +69,6 @@ app.post("/", async(req, res) => {
     try {
         const infoResponse = await axios.request(infoOptions);
         const infoData = infoResponse.data.data;
-        console.log(infoData);
         const bio = infoData.biography;
         const userName = infoData.username;
         const fullName = infoData.full_name.toUpperCase();
@@ -96,12 +95,10 @@ app.post("/", async(req, res) => {
           errormessage : "",
       })
 
-    } catch (error) {
+    } catch (error) { 
       let errorMessage = error.response.data.detail;
       if(errorMessage == "Invalid 'username_or_id_or_url'") errorMessage = "🧐 Please check again, Username or ID or URL is invalid."
       if(errorMessage == "Not found") errorMessage = `🧐 Please check again, ${username} account doesn't exist. `
-
-      console.log(errorMessage)
         res.render("index", {
           isprivate: isprivate,
           errormessage : `${errorMessage}`,
