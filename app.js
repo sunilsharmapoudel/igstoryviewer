@@ -116,6 +116,7 @@ app.post("/", limiter, async (req, res) => {
       errormessage: "",
     })
   } catch (error) {
+    let errorMessage = error.response.data.detail;
     if (errorMessage == "Invalid 'username_or_id_or_url'") errorMessage = "🧐 Please check again, Username or ID or URL is invalid."
     if (errorMessage == "Not found") errorMessage = `🧐 Please check again, ${username} account doesn't exist. `
     res.render("index", {
