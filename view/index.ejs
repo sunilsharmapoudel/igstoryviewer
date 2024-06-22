@@ -73,39 +73,38 @@
     </div>
     <div class="content">
       <div class="stories-wrapper">
-        <% if (typeof stories !== 'undefined' && stories.length > 0) { %>
-          <% stories.forEach(function(n) { %>
-            <% if(n.media_type == 1) { %>
-              <div class="stories-container">
-                <img class="story" src="https://phosphor.utils.elfsightcdn.com/?url=<%= encodeURIComponent(n.thumbnail_url) %>" alt="photo story"/>
-                <button
-                  type="button"
-                  class="download-btn"
-                  data-src="<%= n.thumbnail_url %>"
-                >
-                  Download
-                </button>
-              </div>
-            <% } else { %>
-              <div class="stories-container">
-                <video controls="true" class="story" src="<%= n.video_url %>"></video>
-                <button
-                  type="button"
-                  class="download-btn"
-                  data-src="<%= n.video_url %>"
-                >
-                  Download
-                </button>
-              </div>
-            <% } %>
-          <% }); %>
+        <% if (typeof stories !== 'undefined' && stories.length > 0) { %> <%
+        stories.forEach(function(n) { %> <% if(n.media_type == 1) { %>
+        <div class="stories-container">
+          <img
+            class="story"
+            src="https://phosphor.utils.elfsightcdn.com/?url=<%= encodeURIComponent(n.thumbnail_url) %>"
+            alt="photo story"
+          />
+          <button
+            type="button"
+            class="download-btn"
+            data-src="<%= n.thumbnail_url %>"
+          >
+            Download
+          </button>
+        </div>
         <% } else { %>
-          <% if(isprivate == "Yes") { %>
-            <p class="error-title">Account is Private</p>
-          <% } else { %>
-            <p class="error-title">No stories uploaded in past 24 hours.</p>
-          <% } %>
-        <% } %>
+        <div class="stories-container">
+          <video controls="true" class="story" src="<%= n.video_url %>"></video>
+          <button
+            type="button"
+            class="download-btn"
+            data-src="<%= n.video_url %>"
+          >
+            Download
+          </button>
+        </div>
+        <% } %> <% }); %> <% } else { %> <% if(isprivate == "Yes") { %>
+        <p class="error-title">Account is Private</p>
+        <% } else { %>
+        <p class="error-title">No stories uploaded in past 24 hours.</p>
+        <% } %> <% } %>
       </div>
     </div>
   </div>
@@ -184,7 +183,13 @@
               IG Story Viewer ensures your privacy with its anonymous IG story
               viewer and Instagram profile viewer. Watch stories and explore
               profiles discreetly, and enjoy free Instagram story downloads with
-              our <a class="link" href="https://securitysection.in/importance-of-digital-privacy/">privacy-focused</a> service.
+              our
+              <a
+                class="link"
+                href="https://securitysection.in/importance-of-digital-privacy/"
+                >privacy-focused</a
+              >
+              service.
             </p>
           </div>
         </div>
@@ -226,34 +231,67 @@
       </div>
     </div>
 
-      <h2 class="section-title">How to Use IG Story Viewer</h2>
-      <div class="steps">
-          <h3>Steps to Use IG Story Viewer</h3>
-          <p>Follow these steps to view Instagram stories anonymously, download stories, or view Instagram profiles:</p>
-          <ol class="">
-              <li><strong>Open IG Story Viewer Website:</strong> Go to the IG Story Viewer website at <a class="link" href="https://www.igstoryviewer.pro">www.igstoryviewer.pro</a>.</li>
-              <li><strong>Enter Instagram Username or URL</strong>
-                  <ul class="services-list">
-                      <li>In the search bar on the homepage, enter the Instagram username, profile URL, or story URL of the person whose story you want to view or download.</li>
-                      <li>Make sure you enter the correct username or URL to ensure accurate results.</li>
-                  </ul>
-              </li>
-              <li><strong>Select Desired Action</strong>
-                  <ul class="services-list">
-                      <li><strong>View Stories:</strong>
-                        Click on the "View Story" button to see the latest stories posted by the user. You can view stories anonymously without notifying the user.</li>
-                      <li><strong>Download Stories:</strong>
-                        If you want to download a story, click on the "Download Story" button. The story will be saved to your device.</li>
-                      <li><strong>View Profile:</strong>
-                        To see the Instagram profile, click on the "View Profile" button. This allows you to see the profile details and public posts.</li>
-                  </ul>
-              </li>
-              <li><strong>Enjoy Anonymous Viewing:</strong>
-                The IG Story Viewer ensures that your identity remains anonymous. The Instagram user will not be notified that you have viewed their stories or profile.</li>
-              <li><strong>Free and Easy to Use:</strong>
-                IG Story Viewer is a free tool that provides quick and easy access to Instagram stories and profiles. There is no need to create an account or log in.</li>
-          </ol>
-      </div>
+    <h2 class="section-title">How to Use IG Story Viewer</h2>
+    <div class="steps">
+      <h3>Steps to Use IG Story Viewer</h3>
+      <p>
+        Follow these steps to view Instagram stories anonymously, download
+        stories, or view Instagram profiles:
+      </p>
+      <ol class="">
+        <li>
+          <strong>Open IG Story Viewer Website:</strong> Go to the IG Story
+          Viewer website at
+          <a class="link" href="https://www.igstoryviewer.pro"
+            >www.igstoryviewer.pro</a
+          >.
+        </li>
+        <li>
+          <strong>Enter Instagram Username or URL</strong>
+          <ul class="services-list">
+            <li>
+              In the search bar on the homepage, enter the Instagram username,
+              profile URL, or story URL of the person whose story you want to
+              view or download.
+            </li>
+            <li>
+              Make sure you enter the correct username or URL to ensure accurate
+              results.
+            </li>
+          </ul>
+        </li>
+        <li>
+          <strong>Select Desired Action</strong>
+          <ul class="services-list">
+            <li>
+              <strong>View Stories:</strong> Click on the "View Story" button to
+              see the latest stories posted by the user. You can view stories
+              anonymously without notifying the user.
+            </li>
+            <li>
+              <strong>Download Stories:</strong> If you want to download a
+              story, click on the "Download Story" button. The story will be
+              saved to your device.
+            </li>
+            <li>
+              <strong>View Profile:</strong> To see the Instagram profile, click
+              on the "View Profile" button. This allows you to see the profile
+              details and public posts.
+            </li>
+          </ul>
+        </li>
+        <li>
+          <strong>Enjoy Anonymous Viewing:</strong> The IG Story Viewer ensures
+          that your identity remains anonymous. The Instagram user will not be
+          notified that you have viewed their stories or profile.
+        </li>
+        <li>
+          <strong>Free and Easy to Use:</strong> IG Story Viewer is a free tool
+          that provides quick and easy access to Instagram stories and profiles.
+          There is no need to create an account or log in.
+        </li>
+      </ol>
+    </div>
 
     <div class="faq">
       <div class="accordion__wrapper">
@@ -269,8 +307,8 @@
             <p class="accordion__answer">
               <strong>IG Story Viewer</strong> is a user-friendly tool that
               allows you to view
-              <a class="link" href="https://www.instagram.com">Instagram</a> stories
-              effortlessly. With our platform, you can watch stories
+              <a class="link" href="https://www.instagram.com">Instagram</a>
+              stories effortlessly. With our platform, you can watch stories
               anonymously, download them, and explore profiles without hassle.
             </p>
           </div>

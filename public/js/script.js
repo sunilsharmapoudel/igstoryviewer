@@ -1,21 +1,20 @@
 function openVideoInNewTab(url) {
-    const a = document.createElement('a');
-    a.href = url;
-    a.target = '_blank';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+  const a = document.createElement('a');
+  a.href = url;
+  a.target = '_blank';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-
   const downloadButtons = document.querySelectorAll('.download-btn');
-    downloadButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            const videoUrl = button.getAttribute('data-src');
-            openVideoInNewTab(videoUrl);
-        });
+  downloadButtons.forEach(button => {
+    button.addEventListener('click', function () {
+      const videoUrl = button.getAttribute('data-src');
+      openVideoInNewTab(videoUrl);
     });
+  });
 
   const accordions = document.querySelectorAll(".accordion");
   accordions.forEach((accordion, index) => {
@@ -42,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const form = document.querySelector('form');
   const input = document.querySelector('input');
-  form.addEventListener('submit', function(event) {
+  form.addEventListener('submit', function (event) {
     event.preventDefault();
 
     if (input.value.trim() === '') {
