@@ -24,7 +24,7 @@ const limiter = expressRateLimit({
   handler: (req, res) => {
     res.render("index", {
       isprivate: "",
-      errormessage: "Too many requests, please try again later in 10 minutes.",
+      errormessage: "Too many requests, please try again later in 1 minutes.",
       username: null,
       fullname: "",
       followerscount: "",
