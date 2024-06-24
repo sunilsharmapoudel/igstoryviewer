@@ -373,6 +373,12 @@ form > button {
   line-height: 2.2rem;
 }
 
+.ig-story-info-video {
+  border-radius: 20px;
+  width: 100%;
+  border: #e6683c 3px solid;
+}
+
 .site-desc {
   margin-bottom: var(--mb-1-5);
   background-color: var(--skin-color);
