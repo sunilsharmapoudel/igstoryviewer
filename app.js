@@ -101,6 +101,8 @@ app.post("/", limiter, async (req, res) => {
     const storiesResponse = await axios.request(storiesOptions);
     const storiesCount = storiesResponse.data.data.count;
     const stories = storiesResponse.data.data.items;
+    console.log(stories)
+    console.log(storiesCount)
     if (isPrivate == true) isprivate = "Yes"
     else isprivate = "No"
     res.render("index", {
