@@ -90,7 +90,7 @@ app.post("/", limiter, async (req, res) => {
   try {
     const infoResponse = await axios.request(infoOptions);
     const infoData = infoResponse.data.data;
-    const bio = infoData.biography;
+    let bio = infoData.biography;
     const userName = infoData.username;
     const fullName = infoData.full_name.toUpperCase();
     const followersCount = infoData.follower_count;
@@ -101,8 +101,8 @@ app.post("/", limiter, async (req, res) => {
     const storiesResponse = await axios.request(storiesOptions);
     const storiesCount = storiesResponse.data.data.count;
     const stories = storiesResponse.data.data.items;
-    console.log(stories)
-    console.log(storiesCount)
+    console.log(bio)
+    if (bio == "") bio = `${fullName} don't have bio`
     if (isPrivate == true) isprivate = "Yes"
     else isprivate = "No"
     res.render("index", {
