@@ -1,9 +1,11 @@
 # igstoryviewer
+
 IG Story Viewer is an anonymous Instagram story viewer application which let you view story of a person by pugging their username or id or url.
 
 ## Table of contents
 
 - [Overview](#overview)
+
   - [Screenshots](#screenshots)
   - [Links](#links)
 
@@ -13,7 +15,9 @@ IG Story Viewer is an anonymous Instagram story viewer application which let you
   - [Useful resources](#useful-resources)
 - [Author](#author)
 - [Acknowledgments](#acknowledgments)
+
 ## Overview
+
 ### Screenshots
 
 Desktop Screenshot
@@ -37,6 +41,7 @@ Moile Screenshot
 - Vercel
 - Rapid API
 - Sweetalert2
+- expressRateLimit
 
 ## What I Learned
 
@@ -64,5 +69,3 @@ Moile Screenshot
 ## Acknowledgments
 
 I would like to extend my gratitude to RapidAPI for providing the Instagram Scraper API, which allowed me to complete my project with their generous offering of free API requests.
-
-
