@@ -89,6 +89,7 @@ app.post("/", limiter, async (req, res) => {
 
   try {
     const infoResponse = await axios.request(infoOptions);
+    console.log(infoResponse);
     const infoData = infoResponse.data.data;
     let bio = infoData.biography;
     const userName = infoData.username;
