@@ -7,6 +7,8 @@ const port = process.env.PORT || 4000;
 const path = require("path");
 const axios = require('axios');
 const expressRateLimit = require('express-rate-limit');
+const inject = require('@vercel/analytics');
+
 
 
 const app = express();
@@ -36,6 +38,9 @@ const limiter = expressRateLimit({
     });
   }
 });
+
+inject();
+
 
 app.get("/", async (req, res) => {
   res.render("index", {
