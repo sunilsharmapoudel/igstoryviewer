@@ -1,11 +1,13 @@
 {
   "name": "igstoryviewer",
-  "version": "1.0.0",
-  "description": "It is an anonymous Instagram story viewer application which let you view story of a person by pugging their username.",
-  "main": "app.js",
+  "version": "2.0.0",
+  "description": "IG Story Viewer is an anonymous Instagram story viewer application which lets you view the story of a person by plugging in their username, id, or url.",
+  "private": true,
   "scripts": {
-    "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -13,13 +15,10 @@
   },
   "keywords": [
     "igstoryviewer",
-    "insgagram",
-    "story",
-    "viewer",
-    "anonymous",
     "instagram",
     "story",
-    "viewer"
+    "viewer",
+    "anonymous"
   ],
   "author": "Sunil Sharma",
   "license": "ISC",
@@ -28,15 +27,21 @@
   },
   "homepage": "https://github.com/sunilsharmapoudel/igstoryviewer#readme",
   "dependencies": {
-    "@vercel/analytics": "^1.4.1",
-    "axios": "^1.7.2",
-    "body-parser": "^1.20.2",
-    "dotenv": "^16.4.5",
-    "ejs": "^3.1.10",
-    "express": "^4.19.2",
-    "express-rate-limit": "^7.3.1",
-    "path": "^0.12.7",
-    "request": "^2.88.2",
-    "serve-favicon": "^2.5.0"
+    "@upstash/ratelimit": "^2.0.8",
+    "@upstash/redis": "^1.38.0",
+    "next": "^16.2.10",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4.3.2",
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "^16.2.10",
+    "tailwindcss": "^4.3.2",
+    "typescript": "^5"
   }
 }
