@@ -16,7 +16,7 @@ export default function StorySearch() {
     <div>
       <form
         action={formAction}
-        className="mx-auto flex max-w-lg flex-col gap-3 sm:flex-row lg:mx-0"
+        className="mx-auto flex max-w-lg flex-col gap-3 sm:flex-row"
       >
         <div className="relative flex-1">
           <span className="pointer-events-none absolute top-1/2 left-5 -translate-y-1/2 text-muted-foreground">
@@ -53,7 +53,7 @@ export default function StorySearch() {
       {state.status === "error" && state.errormessage && (
         <div
           role="alert"
-          className="mx-auto mt-5 max-w-lg rounded-2xl border border-error/20 bg-error-bg px-5 py-4 text-sm font-medium text-error lg:mx-0"
+          className="mx-auto mt-5 max-w-lg rounded-2xl border border-error/20 bg-error-bg px-5 py-4 text-sm font-medium text-error"
         >
           {state.errormessage}
         </div>

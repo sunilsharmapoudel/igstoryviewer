@@ -6,8 +6,9 @@ import type {
   HighlightItem,
   ReelItem,
   StoriesLookupState,
+  StoryItem,
 } from "@/types/instagram";
-import { getHighlights, getReels } from "@/lib/actions";
+import { getHighlights, getHighlightStories, getReels } from "@/lib/actions";
 import DownloadButton from "@/components/DownloadButton";
 import Skeleton from "@/components/Skeleton";
 import {
@@ -21,6 +22,7 @@ import {
   StarIcon,
   ImageIcon,
   EyeOffIcon,
+  ArrowRightIcon,
 } from "@/components/icons";
 
 type Tab = "stories" | "reels" | "highlights";
@@ -51,6 +53,14 @@ interface HighlightsState {
   status: "idle" | "success" | "error";
   errormessage: string;
   items: HighlightItem[];
+}
+
+interface HighlightDetailState {
+  id: string;
+  title: string;
+  status: "success" | "error";
+  errormessage: string;
+  items: StoryItem[];
 }
 
 export default function ResultsPanel({ state }: { state: StoriesLookupState }) {
@@ -85,6 +95,11 @@ export default function ResultsPanel({ state }: { state: StoriesLookupState }) {
   });
   const [isHighlightsPending, startHighlightsTransition] = useTransition();
 
+  const [highlightDetail, setHighlightDetail] =
+    useState<HighlightDetailState | null>(null);
+  const [isHighlightDetailPending, startHighlightDetailTransition] =
+    useTransition();
+
   function loadReels(maxId: string | null) {
     if (!username) return;
     startReelsTransition(async () => {
@@ -112,8 +127,30 @@ export default function ResultsPanel({ state }: { state: StoriesLookupState }) {
 
   function selectTab(tab: Tab) {
     setActiveTab(tab);
+    if (tab !== "highlights") setHighlightDetail(null);
     if (tab === "reels" && reels.status === "idle") loadReels(null);
     if (tab === "highlights" && highlights.status === "idle") loadHighlights();
+  }
+
+  function openHighlight(highlight: HighlightItem) {
+    const highlightId = highlight.id.split(":")[1] ?? highlight.id;
+    setHighlightDetail({
+      id: highlight.id,
+      title: highlight.title,
+      status: "success",
+      errormessage: "",
+      items: [],
+    });
+    startHighlightDetailTransition(async () => {
+      const result = await getHighlightStories(highlightId);
+      setHighlightDetail({
+        id: highlight.id,
+        title: highlight.title,
+        status: result.status,
+        errormessage: result.errormessage,
+        items: result.items,
+      });
+    });
   }
 
   return (
@@ -180,9 +217,20 @@ export default function ResultsPanel({ state }: { state: StoriesLookupState }) {
           />
         )}
 
-        {activeTab === "highlights" && (
-          <HighlightsGrid highlights={highlights} isPending={isHighlightsPending} />
-        )}
+        {activeTab === "highlights" &&
+          (highlightDetail ? (
+            <HighlightDetail
+              detail={highlightDetail}
+              isPending={isHighlightDetailPending}
+              onBack={() => setHighlightDetail(null)}
+            />
+          ) : (
+            <HighlightsGrid
+              highlights={highlights}
+              isPending={isHighlightsPending}
+              onSelect={openHighlight}
+            />
+          ))}
       </div>
     </div>
   );
@@ -190,18 +238,37 @@ export default function ResultsPanel({ state }: { state: StoriesLookupState }) {
 
 function MediaCard({
   aspect = "aspect-9/16",
+  onClick,
   children,
 }: {
   aspect?: string;
+  onClick?: () => void;
   children: React.ReactNode;
 }) {
-  return (
-    <div
-      className={`group relative ${aspect} overflow-hidden rounded-2xl border border-border bg-surface-2`}
-    >
-      {children}
-    </div>
-  );
+  const className = `group relative ${aspect} overflow-hidden rounded-2xl border border-border bg-surface-2${
+    onClick ? " cursor-pointer" : ""
+  }`;
+
+  if (onClick) {
+    return (
+      <div
+        role="button"
+        tabIndex={0}
+        onClick={onClick}
+        onKeyDown={(event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            onClick();
+          }
+        }}
+        className={className}
+      >
+        {children}
+      </div>
+    );
+  }
+
+  return <div className={className}>{children}</div>;
 }
 
 function StoriesGrid({
@@ -224,9 +291,13 @@ function StoriesGrid({
     );
   }
 
+  return <StoryItemsGrid items={stories} />;
+}
+
+function StoryItemsGrid({ items }: { items: StoryItem[] }) {
   return (
     <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
-      {stories.map((story, index) => (
+      {items.map((story, index) => (
         <MediaCard key={index}>
           {story.media_type === 1 ? (
             <Image
@@ -286,7 +357,23 @@ function ReelsGrid({
               sizes="(min-width: 768px) 25vw, 50vw"
               className="object-cover transition-transform duration-300 group-hover:scale-105"
             />
-            <div className="absolute inset-x-0 bottom-0 flex items-center justify-between gap-2 bg-linear-to-t from-black/85 via-black/40 to-transparent px-3 py-3 text-xs font-medium text-white">
+            <button
+              type="button"
+              onClick={() =>
+                window.open(
+                  reel.video_url ?? reel.permalink,
+                  "_blank",
+                  "noopener,noreferrer"
+                )
+              }
+              aria-label="Play reel"
+              className="absolute inset-0 flex items-center justify-center"
+            >
+              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-md transition-transform hover:scale-110">
+                <PlayIcon className="h-5 w-5" />
+              </span>
+            </button>
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-center justify-between gap-2 bg-linear-to-t from-black/85 via-black/40 to-transparent px-3 py-3 text-xs font-medium text-white">
               <span className="flex items-center gap-2.5">
                 <span className="flex items-center gap-1">
                   <PlayIcon className="h-3 w-3" />
@@ -302,12 +389,12 @@ function ReelsGrid({
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="View reel on Instagram"
-                className="flex shrink-0 items-center gap-1 rounded-full bg-white/15 px-2 py-1 backdrop-blur-sm transition-colors hover:bg-white/25"
+                className="pointer-events-auto flex shrink-0 items-center gap-1 rounded-full bg-white/15 px-2 py-1 backdrop-blur-sm transition-colors hover:bg-white/25"
               >
                 <ExternalLinkIcon className="h-3 w-3" />
               </a>
             </div>
-            <DownloadButton src={reel.thumbnail_url} />
+            <DownloadButton src={reel.video_url ?? reel.thumbnail_url} />
           </MediaCard>
         ))}
       </div>
@@ -334,9 +421,11 @@ function ReelsGrid({
 function HighlightsGrid({
   highlights,
   isPending,
+  onSelect,
 }: {
   highlights: HighlightsState;
   isPending: boolean;
+  onSelect: (highlight: HighlightItem) => void;
 }) {
   if (highlights.status === "error") {
     return <ErrorState message={highlights.errormessage} />;
@@ -350,7 +439,11 @@ function HighlightsGrid({
   return (
     <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
       {highlights.items.map((highlight) => (
-        <MediaCard key={highlight.id} aspect="aspect-square">
+        <MediaCard
+          key={highlight.id}
+          aspect="aspect-square"
+          onClick={() => onSelect(highlight)}
+        >
           <Image
             src={proxyImage(highlight.cover_url)}
             alt={highlight.title}
@@ -358,14 +451,15 @@ function HighlightsGrid({
             sizes="(min-width: 768px) 25vw, 50vw"
             className="object-cover transition-transform duration-300 group-hover:scale-105"
           />
-          <div className="absolute inset-x-0 bottom-0 flex items-center justify-between gap-2 bg-linear-to-t from-black/85 via-black/30 to-transparent px-3 py-3 text-xs font-medium text-white">
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-center justify-between gap-2 bg-linear-to-t from-black/85 via-black/30 to-transparent px-3 py-3 text-xs font-medium text-white">
             <span className="truncate">{highlight.title}</span>
             <a
               href={highlight.permalink}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="View highlight on Instagram"
-              className="flex shrink-0 items-center gap-1 rounded-full bg-white/15 px-2 py-1 backdrop-blur-sm transition-colors hover:bg-white/25"
+              onClick={(event) => event.stopPropagation()}
+              className="pointer-events-auto flex shrink-0 items-center gap-1 rounded-full bg-white/15 px-2 py-1 backdrop-blur-sm transition-colors hover:bg-white/25"
             >
               <ExternalLinkIcon className="h-3 w-3" />
             </a>
@@ -373,6 +467,43 @@ function HighlightsGrid({
           <DownloadButton src={highlight.cover_url} />
         </MediaCard>
       ))}
+    </div>
+  );
+}
+
+function HighlightDetail({
+  detail,
+  isPending,
+  onBack,
+}: {
+  detail: HighlightDetailState;
+  isPending: boolean;
+  onBack: () => void;
+}) {
+  return (
+    <div>
+      <button
+        type="button"
+        onClick={onBack}
+        className="mb-4 inline-flex items-center gap-1.5 text-sm font-semibold text-title hover:text-primary"
+      >
+        <ArrowRightIcon className="h-4 w-4 rotate-180" />
+        {detail.title}
+      </button>
+
+      {detail.status === "error" && <ErrorState message={detail.errormessage} />}
+
+      {detail.status === "success" && detail.items.length === 0 && !isPending && (
+        <EmptyState icon={StarIcon} message="No items found in this highlight." />
+      )}
+
+      {detail.status === "success" && detail.items.length === 0 && isPending && (
+        <SkeletonGrid />
+      )}
+
+      {detail.status === "success" && detail.items.length > 0 && (
+        <StoryItemsGrid items={detail.items} />
+      )}
     </div>
   );
 }

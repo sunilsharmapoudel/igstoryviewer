@@ -9,6 +9,7 @@ export interface StoryItem {
 export interface ReelItem {
   code: string;
   thumbnail_url: string;
+  video_url?: string;
   like_count: number;
   play_count: number | null;
   comment_count: number;

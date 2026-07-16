@@ -5,6 +5,7 @@ import { checkRateLimit } from "@/lib/rateLimit";
 import {
   InstagramApiError,
   fetchInstagramHighlights,
+  fetchInstagramHighlightStories,
   fetchInstagramInfo,
   fetchInstagramReels,
   fetchInstagramStories,
@@ -16,6 +17,7 @@ import {
   type HighlightItem,
   type ReelItem,
   type StoriesLookupState,
+  type StoryItem,
 } from "@/types/instagram";
 
 async function getClientIp() {
@@ -141,6 +143,34 @@ export async function getHighlights(
     return {
       status: "error",
       errormessage: friendlyErrorMessage(detail, username),
+      items: [],
+    };
+  }
+}
+
+export interface HighlightStoriesLookupResult {
+  status: "success" | "error";
+  errormessage: string;
+  items: StoryItem[];
+}
+
+export async function getHighlightStories(
+  highlightId: string
+): Promise<HighlightStoriesLookupResult> {
+  const rateLimitMessage = await rateLimitOrMessage();
+  if (rateLimitMessage) {
+    return { status: "error", errormessage: rateLimitMessage, items: [] };
+  }
+
+  try {
+    const { items } = await fetchInstagramHighlightStories(highlightId);
+    return { status: "success", errormessage: "", items };
+  } catch (error) {
+    const detail =
+      error instanceof InstagramApiError ? error.message : "Something went wrong. Please try again.";
+    return {
+      status: "error",
+      errormessage: friendlyErrorMessage(detail, "this highlight"),
       items: [],
     };
   }

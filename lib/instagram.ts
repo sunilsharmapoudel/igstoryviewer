@@ -43,16 +43,18 @@ interface RawStoryItem {
   video_versions?: RawVideoVersion[];
 }
 
-interface RawReelMedia {
+interface RawPostMedia {
   code: string;
+  product_type?: string;
   image_versions2: { candidates: RawImageCandidate[] };
+  video_versions?: RawVideoVersion[];
   like_count: number;
-  play_count: number | null;
+  view_count: number | null;
   comment_count: number;
 }
 
-interface RawReelsResponse {
-  edges: Array<{ node: { media: RawReelMedia } }>;
+interface RawPostsResponse {
+  edges: Array<{ node: RawPostMedia }>;
   page_info: { end_cursor: string | null; has_next_page: boolean };
 }
 
@@ -130,6 +132,17 @@ export async function fetchInstagramInfo(
   };
 }
 
+function mapStoryItems(rawItems: RawStoryItem[]): StoryItem[] {
+  return rawItems.map((item) => {
+    const video_url = bestUrl(item.video_versions);
+    return {
+      media_type: video_url ? 2 : 1,
+      thumbnail_url: bestUrl(item.image_versions2?.candidates) ?? "",
+      video_url,
+    };
+  });
+}
+
 export async function fetchInstagramStories(
   usernameOrUrl: string
 ): Promise<{ items: StoryItem[] }> {
@@ -138,38 +151,44 @@ export async function fetchInstagramStories(
     { username: usernameOrUrl }
   );
 
-  const items: StoryItem[] = rawItems.map((item) => {
-    const video_url = bestUrl(item.video_versions);
-    return {
-      media_type: video_url ? 2 : 1,
-      thumbnail_url: bestUrl(item.image_versions2?.candidates) ?? "",
-      video_url,
-    };
-  });
+  return { items: mapStoryItems(rawItems) };
+}
 
-  return { items };
+export async function fetchInstagramHighlightStories(
+  highlightId: string
+): Promise<{ items: StoryItem[] }> {
+  const rawItems = await rapidApiPost<RawStoryItem[]>(
+    "/api/instagram/highlightStories",
+    { highlightId }
+  );
+
+  return { items: mapStoryItems(rawItems) };
 }
 
 export async function fetchInstagramReels(
   usernameOrUrl: string,
   maxId: string | null
 ): Promise<{ items: ReelItem[]; nextMaxId: string | null }> {
-  const raw = await rapidApiPost<RawReelsResponse>("/api/instagram/reels", {
+  // The dedicated /reels endpoint only returns a thumbnail image, never a
+  // video URL, so reel video comes from the regular posts feed instead
+  // (reels are also fed there, tagged with product_type "clips").
+  const raw = await rapidApiPost<RawPostsResponse>("/api/instagram/posts", {
     username: usernameOrUrl,
     maxId: maxId ?? "",
   });
 
-  const items: ReelItem[] = raw.edges.map(({ node }) => {
-    const media = node.media;
-    return {
+  const items: ReelItem[] = raw.edges
+    .map(({ node }) => node)
+    .filter((media) => media.product_type === "clips")
+    .map((media) => ({
       code: media.code,
       thumbnail_url: bestUrl(media.image_versions2?.candidates) ?? "",
+      video_url: bestUrl(media.video_versions),
       like_count: media.like_count,
-      play_count: media.play_count,
+      play_count: media.view_count,
       comment_count: media.comment_count,
       permalink: `https://www.instagram.com/reel/${media.code}/`,
-    };
-  });
+    }));
 
   return {
     items,
